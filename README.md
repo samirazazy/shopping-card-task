@@ -32,19 +32,17 @@ Shopping cart app build with MERN stack and using RESTful API design. Responsive
 ```
 $ git clone https://github.com/samirazazy/shopping-card-task.git
 ```
-2. Install dependencies in (the main file), (nodejs file) and (reactjs file):
+2. Install dependencies for the server side in the main file and run the server
 ```
 $ npm install
-```
-3. Run The server:
-```
 $ npm start
 ```
-Server now running on ```localhost:5000```
+Server now running on ```localhost:5000/api/items```
 
-4. Run client-side dependencies:
+3. Run client-side dependencies (in reactjs file):
 ```
 $ cd reactjs
+$ npm install
 $ npm start
 ```
 App now running on ```localhost:3000```
