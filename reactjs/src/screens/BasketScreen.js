@@ -26,7 +26,7 @@ function BasketScreen(props) {
   }, [dispatch, itemId, count]);
 
   const checkout = () => {
-    // props.history.push("/");
+    props.history.push("/");
   };
 
   return (
@@ -59,16 +59,19 @@ function BasketScreen(props) {
                   <button
                     className="quantatyButton"
                     onClick={() => {
+                      // setCount(item.quantaty - 1);
                       setCount(count - 1);
                     }}
                   >
                     &#x2796;
                   </button>
+                  {/* <p className="quantatyNumber">{item.quantaty}</p> */}
                   <p className="quantatyNumber">{count}</p>
                   <button
                     className="quantatyButton"
                     onClick={() => {
-                      setCount(count + 1);
+                      setCount(item.quantaty + 1);
+                      // setCount(count + 1);
                     }}
                   >
                     &#x2795;
