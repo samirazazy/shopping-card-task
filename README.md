@@ -40,6 +40,7 @@ $ npm start
 Server now running on ```localhost:5000/api/items```
 
 3. Run client-side dependencies (in reactjs file):
+Hint --> Use a second terminal and keep the first one, to fetch data from the server.
 ```
 $ cd reactjs
 $ npm install
