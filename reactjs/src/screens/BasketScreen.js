@@ -12,6 +12,7 @@ function BasketScreen(props) {
   let quantaty = props.location.search
     ? Number(props.location.search.split("=")[1])
     : 1;
+    
   const dispatch = useDispatch();
   const [count, setCount] = useState(quantaty);
   const deleteItem = (itemId) => {
@@ -59,19 +60,16 @@ function BasketScreen(props) {
                   <button
                     className="quantatyButton"
                     onClick={() => {
-                      // setCount(item.quantaty - 1);
-                      setCount(count - 1);
+                     if (count!==0) setCount(count - 1);
                     }}
                   >
                     &#x2796;
                   </button>
-                  {/* <p className="quantatyNumber">{item.quantaty}</p> */}
                   <p className="quantatyNumber">{count}</p>
                   <button
                     className="quantatyButton"
                     onClick={() => {
                       setCount(item.quantaty + 1);
-                      // setCount(count + 1);
                     }}
                   >
                     &#x2795;
