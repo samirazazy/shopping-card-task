@@ -50,11 +50,30 @@ function ItemScreen(props) {
           </div>
           <div className="detailsAction">
             <ul>
-              <li>Price: {item.price}</li>
-              <li>Status: Available</li>
+              <li>Price: <b>${item.price}</b></li>
+              <li>Status: <b>Available</b></li>
               <li>
-                Quantaty:{" "}
-                <select
+                Quantaty:
+                <div className="basketQuantaty ">
+                  <button
+                    className="quantatyButton"
+                    onClick={() => {
+                     if (quantaty!==1) setQuantity(quantaty - 1);
+                    }}
+                  >
+                    &#x2796;
+                  </button>
+                  <p className="quantatyNumber">{quantaty}</p>
+                  <button
+                    className="quantatyButton"
+                    onClick={() => {
+                      setQuantity(quantaty + 1);
+                    }}
+                  >
+                    &#x2795;
+                  </button>
+                </div>
+                {/* <select
                   value={quantaty}
                   onChange={(e) => {
                     setQuantity(e.target.value);
@@ -65,7 +84,7 @@ function ItemScreen(props) {
                       {el + 1}
                     </option>
                   ))}
-                </select>
+                </select> */}
               </li>
               <li>
                 <button className="addToBasket" onClick={addToBasket}>

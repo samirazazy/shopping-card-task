@@ -13,8 +13,9 @@ function BasketScreen(props) {
     ? Number(props.location.search.split("=")[1])
     : 1;
     
-  const dispatch = useDispatch();
   const [count, setCount] = useState(quantaty);
+  const dispatch = useDispatch();
+
   const deleteItem = (itemId) => {
     dispatch(deleteFromBasket(itemId));
     console.log("Deleting");
@@ -60,7 +61,7 @@ function BasketScreen(props) {
                   <button
                     className="quantatyButton"
                     onClick={() => {
-                     if (count!==0) setCount(count - 1);
+                     if (count !== 1) setCount(count - 1);
                     }}
                   >
                     &#x2796;
@@ -69,7 +70,7 @@ function BasketScreen(props) {
                   <button
                     className="quantatyButton"
                     onClick={() => {
-                      setCount(item.quantaty + 1);
+                      setCount(count + 1);
                     }}
                   >
                     &#x2795;

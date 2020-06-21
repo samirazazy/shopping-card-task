@@ -38,7 +38,7 @@ export default {
       name: "Lacoste Logo Polo Shirt - Grey",
       description: "Men's Black Rook Suede Chelsea Boots",
       image: "/images/4.jpg",
-      price: 79.95,
+      price: 79,
       category: "men",
       itemsNumber:5,
       details:
