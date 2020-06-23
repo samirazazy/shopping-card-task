@@ -20,6 +20,12 @@ app.get("/api/items", (req, res) => {
   res.send(data.items);
 });
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log("server started successfully...");
+const PORT = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static("reactjs/build"));
+}
+
+app.listen(PORT, () => {
+  console.log(`server started successfully at ${PORT} `);
 });
