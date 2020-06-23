@@ -15,44 +15,44 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="container">
-        <header className="header">
-          <div className="brandName">
+      <div className='container'>
+        <header className='header'>
+          <div className='brandName'>
             <button onClick={openSidebar}>&#x2630;</button>
-            <Link to="/">BRAND</Link>
+            <Link to='/'>BRAND</Link>
           </div>
-          <div className="headerLinks">
-            <Link to="SignIn">SignIn</Link>
-            <Link to="Card">Card</Link>
+          <div className='headerLinks'>
+            <Link to='/'>SignIn</Link>
+            <Link to='/'>Card</Link>
           </div>
         </header>
-        <aside className="aside">
+        <aside className='aside'>
           <h3>Categories</h3>
-          <button className="closeSidebar" onClick={closeSidebar}>
+          <button className='closeSidebar' onClick={closeSidebar}>
             X
           </button>
           <ul>
             <li>
-              <Link to="/">All</Link>
+              <Link to='/'>All</Link>
             </li>
             <li>
-              <Link to="/">Women</Link>
+              <Link to='/'>Women</Link>
             </li>
             <li>
-              <Link to="/">Men</Link>
+              <Link to='/'>Men</Link>
             </li>
           </ul>
         </aside>
 
-        <main className="main">
-          <div className="content">
-            <Route path="/item/:id" component={ItemScreen} />
-            <Route path="/basket/:id" component={BasketScreen} />
-            <Route path="/" exact={true} component={HomeScreen} />
+        <main className='main'>
+          <div className='content'>
+            <Route path='/item/:id' component={ItemScreen} />
+            <Route path='/basket/:id' component={BasketScreen} />
+            <Route path='/' exact={true} component={HomeScreen} />
           </div>
         </main>
 
-        <footer className="footer">All rights reserved!</footer>
+        <footer className='footer'>All rights reserved!</footer>
       </div>
     </BrowserRouter>
   );
