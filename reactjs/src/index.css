@@ -105,7 +105,6 @@ a:hover {
   color: #777;
 }
 
-
 .itemPrice {
   font-size: 2rem;
   font-weight: bold;
@@ -120,33 +119,6 @@ a:hover {
   border: none;
   color: #fff;
   outline: none;
-}
-
-/*********************** Sidebar ***********************/
-.aside {
-  transform: translateX(-35rem);
-  width: 30rem;
-  position: fixed;
-  background-color: #eee;
-  height: 100%;
-}
-
-.aside.open {
-  transform: translateX(0);
-}
-
-.closeSidebar {
-  border: 0.1rem solid #666;
-  border-radius: 50%;
-  padding: 0.5rem;
-  font-size: 2.5rem;
-  padding-top: 0;
-  cursor: pointer;
-  height: 3rem;
-  width: 3rem;
-  outline: none;
-  position: absolute;
-  right: 1rem;
 }
 
 /*********************** Footer ***********************/
@@ -178,7 +150,7 @@ a:hover {
   padding: 0;
 }
 
-.itemInfo{
+.itemInfo {
   line-height: 2;
 }
 
