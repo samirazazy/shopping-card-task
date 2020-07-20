@@ -28,66 +28,54 @@ function ItemScreen(props) {
       ) : error ? (
         <div>{error}</div>
       ) : (
-        <div className="itemDetails">
-          <div className="detailsImage">
-            <img src={item.image} alt="item"></img>
+        <div className='itemDetails'>
+          <div className='detailsImage'>
+            <img src={item.image} alt='item'></img>
           </div>
-          <div className="detailsInformation">
+          <div className='detailsInformation'>
             <ul>
               <li>
                 <h3>{item.name}</h3>
               </li>
-              <li className="itemDescription">{item.description}</li>
+              <li className='itemDescription'>{item.description}</li>
               <li>
                 Price: <b>${item.price}</b>
               </li>
-              <li className="itemInfo">{item.details}</li>
-              <li className="continueShopping">
-                <Link to="/">&#11013;</Link>
+              <li className='itemInfo'>{item.details}</li>
+              <li className='continueShopping'>
+                <Link to='/'>&#11013;</Link>
                 <Link to={"/"}>Continue Shopping</Link>
               </li>
             </ul>
           </div>
-          <div className="detailsAction">
+          <div className='detailsAction'>
             <ul>
-              <li>Price: <b>${item.price}</b></li>
-              <li>Status: <b>Available</b></li>
+              <li>
+                Price: <b>${item.price}</b>
+              </li>
+              <li>
+                Status: <b>Available</b>
+              </li>
               <li>
                 Quantaty:
-                <div className="basketQuantaty ">
+                <div className='basketQuantaty '>
                   <button
-                    className="quantatyButton"
-                    onClick={() => {
-                     if (quantaty!==1) setQuantity(quantaty - 1);
-                    }}
+                    className='quantatyButton'
+                    onClick={() => quantaty !== 1 && setQuantity(quantaty - 1)}
                   >
                     &#x2796;
                   </button>
-                  <p className="quantatyNumber">{quantaty}</p>
+                  <p className='quantatyNumber'>{quantaty}</p>
                   <button
-                    className="quantatyButton"
-                    onClick={() => {
-                      setQuantity(quantaty + 1);
-                    }}
+                    className='quantatyButton'
+                    onClick={() => setQuantity(quantaty + 1)}
                   >
                     &#x2795;
                   </button>
                 </div>
-                {/* <select
-                  value={quantaty}
-                  onChange={(e) => {
-                    setQuantity(e.target.value);
-                  }}
-                >
-                  {[...Array(item.itemsNumber).keys()].map((el) => (
-                    <option key={el + 1} value={el + 1}>
-                      {el + 1}
-                    </option>
-                  ))}
-                </select> */}
               </li>
               <li>
-                <button className="addToBasket" onClick={addToBasket}>
+                <button className='addToBasket' onClick={addToBasket}>
                   Add to Cart
                 </button>
               </li>
