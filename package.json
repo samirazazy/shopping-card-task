@@ -6,8 +6,10 @@
   "scripts": {
     "build": "cd reactjs && npm run build",
     "install-reactjs": "cd reactjs && npm install",
-    "heroku-postbuild": "npm run install-reactjs && npm run build",
-    "start": "nodemon --watch nodejs --exec babel-node nodejs/server.js"
+    "server": "nodemon --watch nodejs --exec babel-node nodejs/server.js",
+    "client": "cd reactjs && npm start",
+    "start": "concurrently  \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "npm run install-reactjs && npm run build"
   },
   "repository": {
     "type": "git",
