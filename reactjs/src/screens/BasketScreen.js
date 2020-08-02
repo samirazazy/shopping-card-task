@@ -1,31 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { addToBasket, deleteFromBasket } from '../functions/basketActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-function BasketScreen(props) {
+function Basket(props) {
   const basket = useSelector((state) => state.basket);
 
   const { basketItems } = basket;
 
+  const subtotal = basketItems.reduce((x, y) => x + y.price * y.quantaty, 0);
+  const numberOfItems = basketItems.reduce((x, y) => x + y.quantaty, 0);
+
   const itemId = props.match.params.id;
-  let quantaty = props.location.search
+
+  const quantaty = props.location.search
     ? Number(props.location.search.split('=')[1])
     : 1;
 
-  const [count, setCount] = useState(quantaty);
   const dispatch = useDispatch();
 
-  const deleteItem = (itemId) => {
-    dispatch(deleteFromBasket(itemId));
-    console.log('Deleting');
-  };
-
   useEffect(() => {
-    if (itemId) {
-      dispatch(addToBasket(itemId, count));
-    }
-  }, [dispatch, itemId, count]);
+    itemId && dispatch(addToBasket(itemId, quantaty));
+  }, [dispatch, itemId, quantaty]);
+
+  const decreaseItemQuantity = (id, quantaty) =>
+    quantaty !== 1 && dispatch(addToBasket(id, quantaty - 1));
+
+  const increaseItemQuantity = (id, quantaty, stock) =>
+    stock > quantaty && dispatch(addToBasket(id, quantaty + 1));
+
+  const deleteItem = (itemId) => dispatch(deleteFromBasket(itemId));
 
   const checkout = () => {
     props.history.push('/');
@@ -59,18 +63,26 @@ function BasketScreen(props) {
                 <div className='basketQuantaty '>
                   <button
                     className='quantatyButton'
-                    onClick={() => count !== 1 && setCount(count - 1)}
+                    onClick={() =>
+                      decreaseItemQuantity(item.product, item.quantaty)
+                    }
                   >
-                    <span role='img' aria-label='+'>
+                    <span role='img' aria-label='-'>
                       &#x2796;
                     </span>
                   </button>
-                  <p className='quantatyNumber'>{count}</p>
+                  <p className='quantatyNumber'>{item.quantaty}</p>
                   <button
                     className='quantatyButton'
-                    onClick={() => setCount(count + 1)}
+                    onClick={() =>
+                      increaseItemQuantity(
+                        item.product,
+                        item.quantaty,
+                        item.itemsNumber
+                      )
+                    }
                   >
-                    <span role='img' aria-label='-'>
+                    <span role='img' aria-label='+'>
                       &#x2795;
                     </span>
                   </button>
@@ -98,9 +110,7 @@ function BasketScreen(props) {
             {basketItems.length !== 0 && (
               <div>
                 <span className='subtotal'>Subtotal: </span>
-                <span className='total'>
-                  ${basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)}
-                </span>
+                <span className='total'>${subtotal}</span>
               </div>
             )}
           </li>
@@ -111,11 +121,11 @@ function BasketScreen(props) {
         <ul className='actionContainer'>
           <li>
             <b>Number of items: </b>
-            {basketItems.reduce((x, y) => x + y.quantaty, 0)} items
+            {numberOfItems} items
           </li>
           <li>
-            <b>Item Sub-Total: </b>
-            {basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)}
+            <b>Items Sub-Total: </b>
+            {subtotal}
           </li>
           <li>
             <b>Shipping: </b>
@@ -123,7 +133,7 @@ function BasketScreen(props) {
           </li>
           <li className='basketTotal'>
             <b>Total:</b>
-            {basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)}
+            {subtotal}
           </li>
         </ul>
 
@@ -139,4 +149,4 @@ function BasketScreen(props) {
   );
 }
 
-export default BasketScreen;
+export default Basket;
