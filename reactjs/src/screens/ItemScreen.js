@@ -1,30 +1,31 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { detailsItem } from "../functions/itemsFunctions";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { detailsItem } from '../functions/itemsFunctions';
+
+// Spinner on loading
+import Spinner from '../components/Spinner';
 
 function ItemScreen(props) {
   const itemDetails = useSelector((state) => state.itemDetails);
   const { item, loading, error } = itemDetails;
   const dispatch = useDispatch();
   const [quantaty, setQuantity] = useState(1);
+
   useEffect(() => {
     dispatch(detailsItem(props.match.params.id));
-    return () => {
-      //
-    };
   }, [dispatch, props.match.params.id]);
 
   const addToBasket = () => {
     props.history.push(
-      "/basket/" + props.match.params.id + "?quantaty=" + quantaty
+      '/basket/' + props.match.params.id + '?quantaty=' + quantaty
     );
   };
 
   return (
     <div>
       {loading ? (
-        <div>Items are currently loading...</div>
+        <Spinner />
       ) : error ? (
         <div>{error}</div>
       ) : (
@@ -44,7 +45,7 @@ function ItemScreen(props) {
               <li className='itemInfo'>{item.details}</li>
               <li className='continueShopping'>
                 <Link to='/'>&#11013;</Link>
-                <Link to={"/"}>Continue Shopping</Link>
+                <Link to={'/'}>Continue Shopping</Link>
               </li>
             </ul>
           </div>
@@ -57,20 +58,28 @@ function ItemScreen(props) {
                 Status: <b>Available</b>
               </li>
               <li>
-                Quantaty:
+                <div className='quantat'>Quantaty:</div>
+
                 <div className='basketQuantaty '>
                   <button
                     className='quantatyButton'
                     onClick={() => quantaty !== 1 && setQuantity(quantaty - 1)}
                   >
-                    &#x2796;
+                    <span role='img' aria-label='+'>
+                      &#x2796;
+                    </span>
                   </button>
                   <p className='quantatyNumber'>{quantaty}</p>
                   <button
                     className='quantatyButton'
-                    onClick={() => setQuantity(quantaty + 1)}
+                    onClick={() =>
+                      !(quantaty > item.itemsNumber) &&
+                      setQuantity(quantaty + 1)
+                    }
                   >
-                    &#x2795;
+                    <span role='img' aria-label='-'>
+                      &#x2795;
+                    </span>
                   </button>
                 </div>
               </li>

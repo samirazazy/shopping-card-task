@@ -1,13 +1,13 @@
-import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import {
   itemListReducer,
   itemDetailsReducer,
-} from "./reducers/productReducers";
-import { basketReducer } from "./reducers/basketReducer";
-import Cookie from "js-cookie";
+} from './reducers/productReducers';
+import { basketReducer } from './reducers/basketReducer';
+import Cookie from 'js-cookie';
 
-const basketItems = Cookie.getJSON("basketItems") || [];
+const basketItems = Cookie.getJSON('basketItems') || [];
 
 const initialState = { basket: { basketItems } };
 const reducer = combineReducers({

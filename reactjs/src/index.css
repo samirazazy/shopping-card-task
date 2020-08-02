@@ -22,6 +22,7 @@ li {
 
 a {
   text-decoration: none;
+  color: #555;
 }
 
 a:hover {
@@ -30,7 +31,7 @@ a:hover {
 
 .container {
   display: grid;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-areas: 'header' 'main' 'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
@@ -39,32 +40,34 @@ a:hover {
 /*********************** Header ***********************/
 .header {
   grid-area: header;
-  background-color: #aaa;
-  color: #fff;
+  background-color: #eee;
+  color: #777;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
+  height: 6rem;
+  padding: 1rem 17rem;
 }
 
 .brandName a {
-  color: #fff;
+  color: #777;
   font-size: 3rem;
   font-weight: bold;
 }
 
 .headerLinks a {
-  color: #fff;
+  color: #777;
   padding: 1rem;
 }
 
 .header a:hover {
-  color: #45f;
+  color: #f5b9a1;
 }
 
 /*********************** Main ***********************/
 .main {
   grid-area: main;
+  padding: 3rem;
 }
 
 /* Home Project */
@@ -93,6 +96,7 @@ a:hover {
 .itemImage {
   max-width: 35rem;
   max-height: 35rem;
+  border-radius: 2.5rem;
 }
 
 .itemName {
@@ -108,6 +112,7 @@ a:hover {
 .itemPrice {
   font-size: 2rem;
   font-weight: bold;
+  color: #f5b9a1;
 }
 
 /* Sidebar button */
@@ -124,8 +129,8 @@ a:hover {
 /*********************** Footer ***********************/
 .footer {
   grid-area: footer;
-  color: #fff;
-  background-color: #aaa;
+  color: #777;
+  background-color: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,7 +142,7 @@ a:hover {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: 5rem;
 }
 
 .itemDetails ul {
@@ -204,7 +209,7 @@ a:hover {
   cursor: pointer;
   outline: none;
   border-radius: 1.5rem;
-  background-color: #fff;
+  background-color: #f5b9a1;
 }
 
 /*********************** Basket Screen ***********************/
@@ -257,6 +262,7 @@ a:hover {
 .basketListContainer li img {
   max-width: 14rem;
   /* max-height: 15rem; */
+  border-radius: 1.5rem;
 }
 
 .basketListContainer li:last-child {
@@ -276,6 +282,10 @@ a:hover {
 
 .basketName .itemName {
   color: #000;
+}
+
+.quantat {
+  padding-bottom: 2rem;
 }
 
 .basketQuantaty {
@@ -332,7 +342,7 @@ a:hover {
 }
 
 .continueShopping a:last-child {
-  color: blue;
+  color: #f5b9a1;
 }
 
 .subtotal {

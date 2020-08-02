@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { addToBasket, deleteFromBasket } from "../functions/basketActions";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { addToBasket, deleteFromBasket } from '../functions/basketActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function BasketScreen(props) {
   const basket = useSelector((state) => state.basket);
@@ -10,7 +10,7 @@ function BasketScreen(props) {
 
   const itemId = props.match.params.id;
   let quantaty = props.location.search
-    ? Number(props.location.search.split("=")[1])
+    ? Number(props.location.search.split('=')[1])
     : 1;
 
   const [count, setCount] = useState(quantaty);
@@ -18,7 +18,7 @@ function BasketScreen(props) {
 
   const deleteItem = (itemId) => {
     dispatch(deleteFromBasket(itemId));
-    console.log("Deleting");
+    console.log('Deleting');
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function BasketScreen(props) {
   }, [dispatch, itemId, count]);
 
   const checkout = () => {
-    props.history.push("/");
+    props.history.push('/');
   };
 
   return (
@@ -38,20 +38,19 @@ function BasketScreen(props) {
           <li className='shoppingCart'>Shopping Cart</li>
           {basketItems.length === 0 ? (
             <div className='emptyCart'>
-              Your Shopping Cart is empty...
-              <Link to='/'>Go Shopping</Link>
+              Your Shopping Cart is empty... <Link to='/'>Go Shopping</Link>
             </div>
           ) : (
             basketItems.map((item) => (
               <li key={item.product}>
                 <div className='basketImage'>
-                  <Link to={"/item/" + item.product}>
+                  <Link to={'/item/' + item.product}>
                     <img src={item.image} alt='product' />
                   </Link>
                 </div>
 
                 <div className='basketName'>
-                  <Link className='itemName' to={"/item/" + item.product}>
+                  <Link className='itemName' to={'/item/' + item.product}>
                     {item.name}
                   </Link>
                   <div>{item.description}</div>
@@ -62,14 +61,18 @@ function BasketScreen(props) {
                     className='quantatyButton'
                     onClick={() => count !== 1 && setCount(count - 1)}
                   >
-                    &#x2796;
+                    <span role='img' aria-label='+'>
+                      &#x2796;
+                    </span>
                   </button>
                   <p className='quantatyNumber'>{count}</p>
                   <button
                     className='quantatyButton'
                     onClick={() => setCount(count + 1)}
                   >
-                    &#x2795;
+                    <span role='img' aria-label='-'>
+                      &#x2795;
+                    </span>
                   </button>
                 </div>
 
@@ -89,15 +92,17 @@ function BasketScreen(props) {
           <li>
             <div className='continueShopping'>
               <Link to='/'>&#11013;</Link>
-              <Link to={"/"}>Continue Shopping</Link>
+              <Link to={'/'}>Continue Shopping</Link>
             </div>
 
-            <div>
-              <span className='subtotal'>Subtotal: </span>
-              <span className='total'>
-                ${basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)}
-              </span>
-            </div>
+            {basketItems.length !== 0 && (
+              <div>
+                <span className='subtotal'>Subtotal: </span>
+                <span className='total'>
+                  ${basketItems.reduce((x, y) => x + y.price * y.quantaty, 0)}
+                </span>
+              </div>
+            )}
           </li>
         </ul>
       </div>
