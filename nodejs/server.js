@@ -1,5 +1,6 @@
 import express from "express";
 import data from "./data";
+import path from 'path'
 
 const app = express();
 
@@ -18,6 +19,10 @@ app.get("/api/items", (req, res) => res.send(data.items));
 
 const PORT = process.env.PORT || 5000;
 
-process.env.NODE_ENV == "production" && app.use(express.static("reactjs/build"))
+if (process.env.NODE_ENV == "production") {
+  app.use(express.static("reactjs/build"))
+
+  app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'reactjs', 'build', 'index.js')))
+}
 
 app.listen(PORT, () => console.log(`server started successfully at ${PORT} `))
