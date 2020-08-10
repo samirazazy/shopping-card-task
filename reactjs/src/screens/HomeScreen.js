@@ -13,10 +13,11 @@ function HomeScreen(props) {
 
   useEffect(() => {
     dispatch(listItems());
-    return () => {
-      //
-    };
   }, [dispatch]);
+
+  const addToBasket = (id) => {
+    props.history.push('/basket/' + id + '?quantaty=' + 1);
+  };
 
   return loading ? (
     <Spinner />
@@ -34,7 +35,24 @@ function HomeScreen(props) {
               <Link to={'/item/' + item._id}>{item.name}</Link>
             </div>
             <div className='itemDescription'>{item.description}</div>
-            <div className='itemPrice'>{item.price}$</div>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div className='itemPrice'>{item.price}$</div>
+              <div
+                className='addToBasket'
+                onClick={() => addToBasket(item._id)}
+              >
+                Add{' '}
+                <span role='img' aria-label='cart'>
+                  &#128722;
+                </span>
+              </div>
+            </div>
           </div>
         </li>
       ))}
