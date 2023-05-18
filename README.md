@@ -59,10 +59,4 @@ $ npm start
 
 App now running on `localhost:3000` 💙
 
-### Home Page
 
-<img src="githubImg/home.png"/>
-
-### Product page
-
-<img src="githubImg/product.png"/>
